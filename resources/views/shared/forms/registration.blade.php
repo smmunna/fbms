@@ -17,26 +17,39 @@
 <body class="form-v10">
     <div class="page-content">
         <div class="form-v10-content">
-            <form class="form-detail" action="#" method="post" id="myform">
+            <form class="form-detail" action="{{ route('create-user') }}" method="post" id="myform"
+                enctype="multipart/form-data">
+                @csrf
+                @method('POST')
                 <div class="form-left">
                     <h2>Registration Form</h2>
+                    <!-- Validation error messages -->
+                    @if ($errors->any())
+                        <div style="color: red; margin-left:12px;">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-row">
                         <select name="role">
-                            <option class="option" value="title">User</option>
-                            <option class="option" value="businessman">Owner</option>
+                            <option class="option" value="user">User</option>
+                            <option class="option" value="owner">Owner</option>
                         </select>
                         <span class="select-btn">
                             <i class="zmdi zmdi-chevron-down"></i>
                         </span>
                     </div>
-                        <div class="form-row">
-                            <input type="text" name="name" id="name" class="input-text"
-                                placeholder="Your Name" required>
-                        </div>
-                        <div class="form-row">
-                            <input type="password" name="password" id="name" class="input-text"
-                                placeholder="Password" required>
-                        </div>
+                    <div class="form-row">
+                        <input type="text" name="name" id="name" class="input-text" placeholder="Your Name"
+                            required>
+                    </div>
+                    <div class="form-row">
+                        <input type="password" name="password" id="name" class="input-text" placeholder="Password"
+                            required>
+                    </div>
                     <div class="form-row">
                         <input type="file" name="photo" accept="image/*" class="company" placeholder="Photo"
                             required>
@@ -45,8 +58,8 @@
                 <div class="form-right">
                     <h2>Contact Details</h2>
                     <div class="form-row">
-                        <input type="text" name="present_address" class="street" id="street" placeholder="Present Address"
-                            required>
+                        <input type="text" name="present_address" class="street" id="street"
+                            placeholder="Present Address" required>
                     </div>
                     <div class="form-row">
                         <input type="text" name="permanent_address" class="additional" id="additional"
@@ -61,14 +74,14 @@
                             <i class="zmdi zmdi-chevron-down"></i>
                         </span>
                     </div>
-                    
-                        <div class="form-row">
-                            <input type="text" name="phone" class="phone" id="phone"
-                                placeholder="Phone Number" required>
-                        </div>
-                    
+
                     <div class="form-row">
-                        <input type="text" name="your_email" id="your_email" class="input-text" required
+                        <input type="text" name="phone" class="phone" id="phone" placeholder="Phone Number"
+                            required>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" name="email" id="your_email" class="input-text" required
                             pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Your Email">
                     </div>
                     <div class="form-checkbox">
@@ -86,6 +99,6 @@
             </form>
         </div>
     </div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>
