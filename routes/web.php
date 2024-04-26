@@ -48,7 +48,13 @@ Route::middleware('checkUserRole:user')->group(function () {
     // Add more routes as needed...
 });
 
+Route::middleware('checkUserRole:owner')->group(function () {
+    Route::get('/owner/dashboard', [DashboardController::class, 'index'])->name('owner.dashboard');
+    // Add more routes as needed...
+});
 
+
+// Logout
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/login');

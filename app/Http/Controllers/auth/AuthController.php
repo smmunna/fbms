@@ -31,9 +31,9 @@ class AuthController extends Controller
                     // Redirect to the teacher dashboard
                     return redirect()->route('user.dashboard');
                     break;
-                case 'parent':
+                case 'owner':
                     // Redirect to the parent dashboard
-                    return redirect()->route('parent.dashboard');
+                    return redirect()->route('owner.dashboard');
                     break;
                 default:
                     // Redirect to the default dashboard or the intended URL
