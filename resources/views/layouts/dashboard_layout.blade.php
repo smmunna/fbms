@@ -34,35 +34,11 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src={{ asset('dashboard/dist/img/AdminLTELogo.png') }} alt="AdminLTELogo"
-                height="60" width="60">
-        </div>
         @include('shared.dashboard.navbar')
         @include('shared.dashboard.main_sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v1</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -108,9 +84,30 @@
     <!-- AdminLTE App -->
     <script src={{ asset('dashboard/dist/js/adminlte.js') }}></script>
     <!-- AdminLTE for demo purposes -->
-    <script src={{ asset('dashboard/dist/js/demo.js') }}></script>
+    {{-- <script src={{ asset('dashboard/dist/js/demo.js') }}></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src={{ asset('dashboard/dist/js/pages/dashboard.js') }}></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the success message element exists
+            var successMessage = document.getElementById("success");
+            if (successMessage) {
+                // Remove the success message after 3 seconds
+                setTimeout(function() {
+                    successMessage.remove();
+                }, 3000);
+            }
+
+            // Check if the failure message element exists
+            var failureMessage = document.getElementById("failure");
+            if (failureMessage) {
+                // Remove the failure message after 3 seconds
+                setTimeout(function() {
+                    failureMessage.remove();
+                }, 3000);
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 

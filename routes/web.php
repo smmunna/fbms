@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,15 +35,21 @@ Route::get('/registration', function () {
 // Route for creating a new user
 Route::post('/registration', [UserController::class, 'createUser'])->name('create-user');
 
-
-// Route::get('/admin/dashboard', function () {
-//     return view('pages.dashboard.dashboard');
-// });
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('edit-profile');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('update-profile');
 
 // Admin Access
-Route::middleware('checkUserRole:admin')->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/userlist', [UserController::class, 'userList'])->name('admin.userlist');
+    Route::get('/search/user-list', [UserController::class, 'userListSearch'])->name('user.list.search');
+    Route::get('/user/{id}', [UserController::class, 'viewUser'])->name('admin.user.view');
+    Route::delete('/user/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
     // Add more routes as needed...
+    Route::resource('properties', PropertyController::class);
+    Route::resource('locations', LocationController::class);
 });
 
 Route::middleware('checkUserRole:user')->group(function () {

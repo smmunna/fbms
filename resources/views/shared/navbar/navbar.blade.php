@@ -32,7 +32,11 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="{{route('login')}}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+            @if (auth()->user())
+                <a href="{{ route('profile') }}" class="btn btn-primary px-3 d-none d-lg-flex">Profile</a>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+            @endif
         </div>
     </nav>
 </div>

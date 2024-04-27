@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -59,5 +60,57 @@ class UserController extends Controller
             return redirect()->route('login')->with('success', 'Registration Successful.');
         }
         // Redirect to login page with success message
+    }
+
+    // Showing User List Page
+    public function userList()
+    {
+        // Retrieve users ordered by created_at in descending order and paginate
+        $users = User::orderBy('created_at', 'desc')->paginate(10); // Assuming 10 users per page
+
+        return view('pages.admin.user.user_list', compact('users'));
+    }
+
+    // Search Users
+    public function userListSearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%")
+                    ->orWhere('phone', 'like', "%$search%");
+            })
+            ->orderByDesc('created_at')
+            ->paginate(10);
+
+        return view('pages.admin.user.user_list', compact('users'));
+    }
+
+    // View user
+    public function viewUser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('pages.admin.user.view_user', compact('user'));
+    }
+
+    // Delete User
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Retrieve the user's photo path
+        $photoPath = $user->photo;
+
+        // Delete the user record
+        $user->delete();
+
+        // Delete the user's photo if exists
+        if ($photoPath) {
+            Storage::disk('public')->delete($photoPath);
+        }
+
+        return redirect()->route('admin.userlist')->with('success', 'User deleted successfully.');
     }
 }
