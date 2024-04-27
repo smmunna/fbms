@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\FlatController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\user\ProfileController;
@@ -52,13 +53,17 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::resource('locations', LocationController::class);
 });
 
-Route::middleware('checkUserRole:user')->group(function () {
-    Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     // Add more routes as needed...
 });
 
-Route::middleware('checkUserRole:owner')->group(function () {
-    Route::get('/owner/dashboard', [DashboardController::class, 'index'])->name('owner.dashboard');
+Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('owner.dashboard');
+    Route::resource('flats', FlatController::class);
+    Route::get('/search/flat', [FlatController::class, 'search'])->name('flats.search');
+
+
     // Add more routes as needed...
 });
 
