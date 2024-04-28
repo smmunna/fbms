@@ -38,6 +38,31 @@
                      </li>
 
                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Flats
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.all.flat') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Flats</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('pending.flat') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pending Flats</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                     <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="nav-icon fas fa-table"></i>
                              <p>
@@ -60,6 +85,7 @@
                              </li>
                          </ul>
                      </li>
+
                      <li class="nav-item">
                          <a href="{{ route('admin.userlist') }}" class="nav-link">
                              <i class="nav-icon far fa-calendar-alt"></i>

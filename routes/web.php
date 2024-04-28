@@ -51,6 +51,12 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     // Add more routes as needed...
     Route::resource('properties', PropertyController::class);
     Route::resource('locations', LocationController::class);
+    Route::get('/all/flat', [FlatController::class, 'adminAllFlat'])->name('admin.all.flat');
+    Route::get('/search/flat', [FlatController::class, 'adminSearchAllFlat'])->name('admin.flats.search');
+    Route::get('/pendings/flat', [FlatController::class, 'adminPendingFlats'])->name('pending.flat');
+    Route::get('/details/flat/{id}', [FlatController::class, 'adminFlatDetails'])->name('admin.flat.details');
+    Route::put('/flats/{id}/approve', [FlatController::class, 'adminApproveFlat'])->name('flat.approve');
+    Route::delete('/flats/{id}/delete', [FlatController::class, 'adminDestroyPending'])->name('flat.delete');
 });
 
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
@@ -62,8 +68,6 @@ Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('owner.dashboard');
     Route::resource('flats', FlatController::class);
     Route::get('/search/flat', [FlatController::class, 'search'])->name('flats.search');
-
-
     // Add more routes as needed...
 });
 

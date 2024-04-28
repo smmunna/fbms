@@ -22,6 +22,7 @@ class FlatController extends Controller
         return view('pages.owner.flats.index', compact('flats'));
     }
 
+    // Search Flats
     public function search(Request $request)
     {
         // Get the search query
@@ -174,5 +175,82 @@ class FlatController extends Controller
         }
 
         return redirect()->route('flats.index')->with('error', 'Flat not found.');
+    }
+
+
+    // For Admin Page;
+    public function adminPendingFlats()
+    {
+        $flats = Flat::where('status', 'pending')->orderByDesc('created_at')->paginate(10);
+        return view('pages.admin.flats.pending_flat', compact('flats'));
+    }
+
+    public function adminFlatDetails(string $id)
+    {
+        // dd($id);
+        // Retrieve the flat from the database based on its ID
+        $flat = DB::table('flats')
+            ->join('users', 'flats.owner_id', '=', 'users.id')
+            ->select('flats.*', 'users.name as owner_name', 'users.photo as owner_photo', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->where('flats.flat_id', $id)
+            ->first();
+
+        // Check if the flat exists
+        if (!$flat) {
+            abort(404); // or handle the case when the flat does not exist
+        }
+
+        // Pass the retrieved data to the view for rendering
+        return view('pages.admin.flats.flat_details', compact('flat'));
+    }
+
+    public function adminApproveFlat(string $id)
+    {
+        $flat = DB::table('flats')->where('flat_id', $id)->first();
+        DB::table('flats')->where('flat_id', $id)->update(['status' => 'approved']);
+        return redirect()->route('pending.flat')->with('success', 'Flat approved successfully.');
+    }
+
+    public function adminDestroyPending(string $id)
+    {
+        // Find the flat record
+        $flat = DB::table('flats')->where('flat_id', $id)->first();
+
+        $photoPath = $flat->photo;
+        if ($photoPath) {
+            Storage::disk('public')->delete($photoPath);
+            // Delete the flat record from the database
+            DB::table('flats')->where('flat_id', $id)->delete();
+
+            return redirect()->route('pending.flat')->with('success', 'Pending Flat deleted successfully.');
+        }
+
+        return redirect()->route('pending.flat')->with('error', 'Flat not found.');
+    }
+
+    public function adminAllFlat()
+    {
+        $flats = Flat::where('status', 'approved')->orderByDesc('created_at')->paginate(10);
+        return view('pages.admin.flats.all_flat', compact('flats'));
+    }
+
+    public function adminSearchAllFlat(Request $request)
+    {
+        // Perform the search based on multiple criteria
+        $searchQuery = $request->input('search');
+
+        $flats = DB::table('flats')
+            ->join('users', 'flats.owner_id', '=', 'users.id')
+            ->select('flats.*', 'users.name as owner_name', 'users.photo as owner_photo', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->where('flats.status', 'approved') // Filter only flats with "approved" status
+            ->where(function ($query) use ($searchQuery) {
+                $query->where('flats.location', 'LIKE', "%{$searchQuery}%")
+                    ->orWhere('flats.size', 'LIKE', "%{$searchQuery}%")
+                    ->orWhere('flats.bed', 'LIKE', "%{$searchQuery}%")
+                    ->orWhere('flats.bath', 'LIKE', "%{$searchQuery}%");
+            })
+            ->get();
+
+        return view('pages.admin.flats.all_flat', compact('flats'));
     }
 }
