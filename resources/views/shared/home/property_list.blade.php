@@ -52,7 +52,8 @@
                                  </div>
                                  <div class="p-4 pb-0">
                                      <h5 class="text-primary mb-3">{{ $flat->price }} TK</h5>
-                                     <a class="d-block h5 mb-2" href="{{ route('public.flat.details', ['id' => $flat->flat_id]) }}">{{ $flat->title }}</a>
+                                     <a class="d-block h5 mb-2"
+                                         href="{{ route('public.flat.details', ['id' => $flat->flat_id]) }}">{{ $flat->title }}</a>
                                      <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $flat->address }},
                                          {{ $flat->location }}</p>
                                  </div>
@@ -69,7 +70,8 @@
                          </div>
                      @endforeach
                      <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                         <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                         <a class="btn btn-primary py-3 px-5" href="{{ route('home.all.properties') }}">Browse More
+                             Property</a>
                      </div>
                  </div>
              </div>
@@ -79,8 +81,9 @@
                          <div class="col-lg-4 col-md-6">
                              <div class="property-item rounded overflow-hidden">
                                  <div class="position-relative overflow-hidden">
-                                     <a href=""><img class="img-fluid" src="{{ asset($sale->photo) }}"
-                                             alt="" style="height: 300px; width: 100%; object-fit: cover;"></a>
+                                     <a href="{{ route('public.flat.details', ['id' => $sale->flat_id]) }}"><img
+                                             class="img-fluid" src="{{ asset($sale->photo) }}" alt=""
+                                             style="height: 300px; width: 100%; object-fit: cover;"></a>
                                      <div
                                          class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                          For {{ $sale->sale_status }}</div>
@@ -90,7 +93,8 @@
                                  </div>
                                  <div class="p-4 pb-0">
                                      <h5 class="text-primary mb-3">{{ $sale->price }} Tk</h5>
-                                     <a class="d-block h5 mb-2" href="">{{ $sale->title }}</a>
+                                     <a class="d-block h5 mb-2"
+                                         href="{{ route('public.flat.details', ['id' => $sale->flat_id]) }}">{{ $sale->title }}</a>
                                      <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $sale->address }},
                                          {{ $sale->location }}</p>
                                  </div>
@@ -108,7 +112,8 @@
                          </div>
                      @endforeach
                      <div class="col-12 text-center">
-                         <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                         <a class="btn btn-primary py-3 px-5" href="{{ route('home.all.properties') }}">Browse More
+                             Property</a>
                      </div>
                  </div>
              </div>
@@ -118,8 +123,9 @@
                          <div class="col-lg-4 col-md-6">
                              <div class="property-item rounded overflow-hidden">
                                  <div class="position-relative overflow-hidden">
-                                     <a href=""><img class="img-fluid" src="{{ asset($rent->photo) }}"
-                                             alt="" style="height: 300px; width: 100%; object-fit: cover;"></a>
+                                     <a href="{{ route('public.flat.details', ['id' => $rent->flat_id]) }}"><img
+                                             class="img-fluid" src="{{ asset($rent->photo) }}" alt=""
+                                             style="height: 300px; width: 100%; object-fit: cover;"></a>
                                      <div
                                          class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                          For {{ $rent->sale_status }}</div>
@@ -129,7 +135,8 @@
                                  </div>
                                  <div class="p-4 pb-0">
                                      <h5 class="text-primary mb-3">{{ $rent->price }} Tk</h5>
-                                     <a class="d-block h5 mb-2" href="">{{ $rent->title }}</a>
+                                     <a class="d-block h5 mb-2"
+                                         href="{{ route('public.flat.details', ['id' => $rent->flat_id]) }}">{{ $rent->title }}</a>
                                      <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $rent->address }},
                                          {{ $rent->location }}</p>
                                  </div>
@@ -146,170 +153,10 @@
                              </div>
                          </div>
                      @endforeach
-                     {{-- <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-1.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Sell</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Appartment</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-2.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Rent</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Villa</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-3.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Sell</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Office</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-4.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Rent</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Building</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-5.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Sell</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Home</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6">
-                         <div class="property-item rounded overflow-hidden">
-                             <div class="position-relative overflow-hidden">
-                                 <a href=""><img class="img-fluid" src={{ asset('home/img/property-6.jpg') }}
-                                         alt=""></a>
-                                 <div
-                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                     For Rent</div>
-                                 <div
-                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                     Shop</div>
-                             </div>
-                             <div class="p-4 pb-0">
-                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                 <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-                             </div>
-                             <div class="d-flex border-top">
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                                 <small class="flex-fill text-center border-end py-2"><i
-                                         class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                                 <small class="flex-fill text-center py-2"><i
-                                         class="fa fa-bath text-primary me-2"></i>2 Bath</small>
-                             </div>
-                         </div>
-                     </div> --}}
+
                      <div class="col-12 text-center">
-                         <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                         <a class="btn btn-primary py-3 px-5" href="{{ route('home.all.properties') }}">Browse More
+                             Property</a>
                      </div>
                  </div>
              </div>

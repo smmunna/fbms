@@ -4,6 +4,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\FlatController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\user\ProfileController;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/login', function () {
     return view('shared.forms.login');
@@ -47,6 +48,11 @@ Route::get('/details/flat/{id}', [FlatController::class, 'publicFlatDetails'])->
 
 // Comment and Rating
 Route::resource('comments', CommentController::class);
+
+// All Properties
+Route::get('/all/properties', [HomeController::class, 'allProperties'])->name('home.all.properties');
+// Define route for filtering properties
+Route::get('/filter-properties', [HomeController::class, 'filter'])->name('filter.properties');
 
 
 // Admin Access
