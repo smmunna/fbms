@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         return view('pages.home.all_property', compact('properties', 'locations', 'propertyTypes'));
     }
-
+    
     // Properties by type
     public function showPropertiesByType($propertyType)
     {

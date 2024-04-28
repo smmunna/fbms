@@ -14,29 +14,51 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
                 <a href="{{ route('welcome') }}" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <div class="nav-item dropdown">
+                <a href="{{ route('home.all.properties') }}" class="nav-item nav-link">Property</a>
+                {{-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="property-list.html" class="dropdown-item">Property List</a>
                         <a href="property-type.html" class="dropdown-item">Property Type</a>
                         <a href="property-agent.html" class="dropdown-item">Property Agent</a>
                     </div>
-                </div>
-                <div class="nav-item dropdown">
+                </div> --}}
+                {{-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         <a href="404.html" class="dropdown-item">404 Error</a>
                     </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div> --}}
+                <a href="#" class="nav-item nav-link">About</a>
+                <a href="#" class="nav-item nav-link">Contact</a>
             </div>
             @if (auth()->user())
-                <a href="{{ route('profile') }}" class="btn btn-primary px-3 d-none d-lg-flex">Profile</a>
+                <div class="dropdown d-flex align-items-center">
+                    <a class="dropdown-toggle text-decoration-none" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset(auth()->user()->photo) }}" alt="User Photo" class="rounded-circle me-2"
+                            style="width: 32px; height: 32px;">
+                        {{ auth()->user()->name }}
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                        @if (auth()->user()->role == 'admin')
+                            <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        @elseif (auth()->user()->role == 'owner')
+                            <li><a class="dropdown-item" href="{{ route('owner.dashboard') }}">Dashboard</a></li>
+                        @else
+                            <li><a class="dropdown-item" href="{{ route('owner.dashboard') }}">Dashboard</a></li>
+                        @endif
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                        <!-- Add other dropdown items if needed -->
+                    </ul>
+                </div>
             @else
                 <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
             @endif
+
         </div>
     </nav>
 </div>

@@ -75,7 +75,16 @@
                             </table>
                         </div>
                     </div>
+                    @if (auth()->check())
+                        <a href="#" class="btn btn-primary text-center">
+                            Book Now
+                        </a>
+                    @else
+                        <p class="text-center">Please <a href="{{ route('login') }}">login</a> to book</p>
+                    @endif
                 </div>
+
+
             </div>
             <div class="col-md-6">
                 <div class="card">
