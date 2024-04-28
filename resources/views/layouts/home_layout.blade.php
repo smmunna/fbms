@@ -29,6 +29,10 @@
 
     <!-- Template Stylesheet -->
     <link href={{ asset('home/css/style.css') }} rel="stylesheet">
+
+    <!-- Starability CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/starability/starability-all.min.css">
+
     @stack('styles')
 </head>
 
@@ -63,6 +67,8 @@
 
     <!-- Template Javascript -->
     <script src={{ asset('home/js/main.js') }}></script>
+    <!-- Starability JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/starability/starability-all.min.js"></script>
     @stack('scripts')
 </body>
 

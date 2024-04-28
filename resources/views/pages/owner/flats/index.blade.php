@@ -64,5 +64,11 @@
                 </table>
             </div>
         </div>
+        <!-- Pagination Links -->
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                {{ $flats->links() }}
+            </div>
+        </div>
     </div>
 @endsection

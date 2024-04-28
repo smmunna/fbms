@@ -34,6 +34,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="location">Sale Status</label>
+                                <select name="sale_status" class="form-control" id="sale_status">
+                                    <option value={{ $flat->sale_status }}>{{ $flat->sale_status }}</option>
+                                    <option value="Rent">Rent</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" class="form-control" id="address"
                                     value="{{ $flat->address }}">

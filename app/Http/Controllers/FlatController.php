@@ -65,6 +65,7 @@ class FlatController extends Controller
             'address' => 'required|string|max:255',
             'price' => 'required|numeric',
             'property_type' => 'required',
+            'sale_status' => 'required',
             'size' => 'required|numeric',
             'bed' => 'required|numeric',
             'bath' => 'required|numeric',
@@ -130,6 +131,7 @@ class FlatController extends Controller
             'address' => 'required|string|max:255',
             'price' => 'required|numeric',
             'property_type' => 'required',
+            'sale_status' => 'required',
             'size' => 'required|numeric',
             'bed' => 'required|numeric',
             'bath' => 'required|numeric',
@@ -204,6 +206,36 @@ class FlatController extends Controller
         return view('pages.admin.flats.flat_details', compact('flat'));
     }
 
+    // public flat details
+    public function publicFlatDetails(string $id)
+    {
+        // dd($id);
+        // Retrieve the flat from the database based on its ID
+        $flat = DB::table('flats')
+            ->join('users', 'flats.owner_id', '=', 'users.id')
+            ->select('flats.*', 'users.name as owner_name', 'users.photo as owner_photo', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->where('flats.flat_id', $id)
+            ->first();
+
+        // Showing the comments
+        $comments = DB::table('comments')
+            ->join('users', 'comments.user_id', '=', 'users.id')
+            ->select('comments.*', 'users.name as user_name', 'users.photo as user_photo')
+            ->where('comments.flat_id', $id)
+            ->orderByDesc('comments.created_at') // Order by created_at in descending order
+            ->paginate(10);
+
+        // dd($comments);
+
+        // Check if the flat exists
+        if (!$flat) {
+            abort(404); // or handle the case when the flat does not exist
+        }
+
+        // Pass the retrieved data to the view for rendering
+        return view('pages.home.flat_details', compact('flat', 'comments'));
+    }
+
     public function adminApproveFlat(string $id)
     {
         $flat = DB::table('flats')->where('flat_id', $id)->first();
@@ -252,5 +284,23 @@ class FlatController extends Controller
             ->get();
 
         return view('pages.admin.flats.all_flat', compact('flats'));
+    }
+
+    // Toogle Feature, isFeature true or false
+    public function toggleFeatured(Request $request, $id)
+    {
+        // Validate request data if needed
+
+        // Retrieve the current featured status of the flat
+        $currentStatus = DB::table('flats')->where('flat_id', $id)->value('featured');
+
+        // Toggle the featured status
+        $newStatus = $currentStatus === 'true' ? 'false' : 'true';
+
+        // Update the flat's featured status in the database
+        DB::table('flats')->where('flat_id', $id)->update(['featured' => $newStatus]);
+
+        // Redirect back to the previous page or any other desired page
+        return back()->with('success', 'Featured status changed successfully.');
     }
 }

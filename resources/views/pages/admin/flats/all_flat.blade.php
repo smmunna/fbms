@@ -29,6 +29,7 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Status</th>
+                            <th>isFeatured</th>
                             <th>Location</th>
                             <th>Address</th>
                             <th>Price</th>
@@ -41,6 +42,16 @@
                                 <td>{{ $flat->flat_id }}</td>
                                 <td>{{ $flat->title }}</td>
                                 <td>{{ $flat->status }}</td>
+                                <td>
+                                    <form action="{{ route('flats.toggle-featured', $flat->flat_id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="featured" value="{{ $flat->featured == 'true' ? 'false' : 'true' }}">
+                                        <input type="checkbox" class="featured-checkbox" {{ $flat->featured == 'true' ? 'checked' : '' }} onchange="this.form.submit()">
+                                    </form>
+                                </td>
+                                
+
                                 <td>{{ $flat->location }}</td>
                                 <td>{{ $flat->address }}</td>
                                 <td>{{ $flat->price }}</td>
@@ -57,13 +68,17 @@
                                     <button
                                         onclick="event.preventDefault(); if (confirm('Are you sure you want to delete this flat?')) { document.getElementById('delete-form-{{ $flat->flat_id }}').submit(); }"
                                         class="btn btn-danger">Delete</button>
-
-
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <!-- Pagination Links -->
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                {{ $flats->links() }}
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 
 @section('dash_content')
 
-    <div class="row">
+    <div class="row py-3">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">

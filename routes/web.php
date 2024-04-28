@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\LocationController;
@@ -41,6 +42,13 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('edit-profile');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('update-profile');
 
+// Flat also added comment here
+Route::get('/details/flat/{id}', [FlatController::class, 'publicFlatDetails'])->name('public.flat.details');
+
+// Comment and Rating
+Route::resource('comments', CommentController::class);
+
+
 // Admin Access
 Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -57,6 +65,8 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::get('/details/flat/{id}', [FlatController::class, 'adminFlatDetails'])->name('admin.flat.details');
     Route::put('/flats/{id}/approve', [FlatController::class, 'adminApproveFlat'])->name('flat.approve');
     Route::delete('/flats/{id}/delete', [FlatController::class, 'adminDestroyPending'])->name('flat.delete');
+
+    Route::put('/flats/{id}/toggle-featured', [FlatController::class, 'toggleFeatured'])->name('flats.toggle-featured');
 });
 
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {

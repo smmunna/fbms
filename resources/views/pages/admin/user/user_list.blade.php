@@ -2,12 +2,12 @@
 @section('title', 'User List')
 @section('dash_content')
 
-    <div class="row mb-3">
-        <div class="col-md-6">
+    <div class="form-row mb-3">
+        <div class="pt-3 col-md-6">
             <form action="{{ route('user.list.search') }}" method="GET" class="form-inline">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search by name, email, or phone"
-                        value="{{ request('search') }}">
+                    <input type="text" name="search" style="width: 500px;" class="form-control"
+                        placeholder="Search by name, email, or phone" value="{{ request('search') }}">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>
@@ -69,7 +69,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    
+
                     </table>
                 </div>
                 <!-- /.card-body -->

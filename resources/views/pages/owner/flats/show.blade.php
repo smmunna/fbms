@@ -26,12 +26,20 @@
                                         <td>{{ $flat->location }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Sale Status</th>
+                                        <td>{{ $flat->sale_status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>isFeatured</th>
+                                        <td>{{ $flat->featured }}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Address</th>
                                         <td>{{ $flat->address }}</td>
                                     </tr>
                                     <tr>
                                         <th>Price</th>
-                                        <td>${{ $flat->price }}</td>
+                                        <td>{{ $flat->price }} TK</td>
                                     </tr>
                                     <tr>
                                         <th>Property Type</th>

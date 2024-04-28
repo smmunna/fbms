@@ -102,6 +102,26 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Sale Status -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="sale_status">Sale Status</label>
+                            <select name="sale_status" class="form-control @error('sale_status') is-invalid @enderror"
+                                id="sale_status">
+                                <option value="">Choose Sale Status</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Sale">Sale</option>
+                            </select>
+                            @error('location')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
+
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description">Description</label>
