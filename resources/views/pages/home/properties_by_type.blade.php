@@ -1,45 +1,13 @@
 @extends('layouts.home_layout')
-@section('title', 'All Properties')
-
+@section('title', 'Properties')
 @section('content')
-
-    <div class="container  py-3">
-        <form action="{{ route('filter.properties') }}" method="GET">
-            <div class="row mb-3">
-                <!-- Location Filter -->
-                <div class="col-md-4">
-                    <label for="location" class="form-label">Location:</label>
-                    <select name="location" id="location" class="form-select">
-                        <option value="">Select Location</option>
-                        @foreach ($locations as $location)
-                            <option value="{{ $location->name }}">{{ $location->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- Property Type Filter -->
-                <div class="col-md-4">
-                    <label for="property_type" class="form-label">Property Type:</label>
-                    <select name="property_type" id="property_type" class="form-select">
-                        <option value="">Select Property Type</option>
-                        @foreach ($propertyTypes as $type)
-                            <option value="{{ $type->name }}">{{ $type->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- Search Bar -->
-                <div class="col-md-4">
-                    <label for="search" class="form-label">Search:</label>
-                    <input type="text" name="search" id="search" class="form-control"
-                        placeholder="Search by Title, Size, Bed, Bath">
-                </div>
-                <div class="col-md-12 mt-3">
-                    <button type="submit" class="btn btn-primary">Apply Filters</button>
-                </div>
+    <div class="container py-3 vh-100">
+        @if ($properties->isEmpty())
+            <div class="alert alert-info text-center" role="alert">
+                No properties found.
             </div>
-        </form>
-
-
-        <div class="row g-4">
+        @endif
+        <div class="row g-4 mb-3">
             @foreach ($properties as $flat)
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="property-item rounded overflow-hidden">
@@ -73,7 +41,8 @@
                     </div>
                 </div>
             @endforeach
-            <!-- Pagination Links -->
-            {{ $properties->links() }}
-        @endsection
+        </div>
+        <!-- Pagination Links -->
+        {{ $properties->links() }}
     </div>
+@endsection

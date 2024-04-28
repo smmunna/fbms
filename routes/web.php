@@ -54,6 +54,8 @@ Route::get('/all/properties', [HomeController::class, 'allProperties'])->name('h
 // Define route for filtering properties
 Route::get('/filter-properties', [HomeController::class, 'filter'])->name('filter.properties');
 
+Route::get('/properties/{property_type}', [HomeController::class, 'showPropertiesByType'])->name('properties.by_type');
+
 
 // Admin Access
 Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {

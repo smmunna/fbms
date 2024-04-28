@@ -1,96 +1,116 @@
+@php
+    $villaCount = DB::table('flats')->where('property_type', 'Villa')->count();
+    $familyHouseCount = DB::table('flats')->where('property_type', 'Family House')->count();
+    $officeCount = DB::table('flats')->where('property_type', 'Office')->count();
+    $buildingCount = DB::table('flats')->where('property_type', 'Building')->count();
+    $shopCount = DB::table('flats')->where('property_type', 'Shop')->count();
+    $hostelCount = DB::table('flats')->where('property_type', 'Hostels')->count();
+    $garageCount = DB::table('flats')->where('property_type', 'Garage')->count();
+    $allCount = DB::table('flats')->count();
+@endphp
+
+
 <!-- Category Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="mb-3">Property Types</h1>
-            <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+            <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod
+                sit. Ipsum diam justo sed rebum vero dolor duo.</p>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Family House']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-apartment.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-apartment.png') }}" alt="Icon">
                         </div>
-                        <h6>Apartment</h6>
-                        <span>123 Properties</span>
+                        <h6>Family House</h6>
+                        <span>{{ $familyHouseCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Villa']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-villa.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-villa.png') }}" alt="Icon">
                         </div>
                         <h6>Villa</h6>
-                        <span>123 Properties</span>
+                        <span>{{ $villaCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Office']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-house.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-house.png') }}" alt="Icon">
                         </div>
-                        <h6>Home</h6>
-                        <span>123 Properties</span>
+                        <h6>Office</h6>
+                        <span>{{ $officeCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Building']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-housing.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-housing.png') }}" alt="Icon">
                         </div>
-                        <h6>Office</h6>
-                        <span>123 Properties</span>
+                        <h6>Building</h6>
+                        <span>{{ $buildingCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Shop']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-building.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-building.png') }}" alt="Icon">
                         </div>
-                        <h6>Building</h6>
-                        <span>123 Properties</span>
+                        <h6>Shop</h6>
+                        <span>{{ $shopCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Hostels']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-neighborhood.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-neighborhood.png') }}" alt="Icon">
                         </div>
-                        <h6>Townhouse</h6>
-                        <span>123 Properties</span>
+                        <h6>Hostel</h6>
+                        <span>{{ $hostelCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"
+                    href="{{ route('properties.by_type', ['property_type' => 'Garage']) }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-condominium.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-condominium.png') }}" alt="Icon">
                         </div>
-                        <h6>Shop</h6>
-                        <span>123 Properties</span>
+                        <h6>Garage</h6>
+                        <span>{{ $garageCount }} Properties</span>
                     </div>
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ route('home.all.properties') }}">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
-                            <img class="img-fluid" src="{{asset('home/img/icon-luxury.png')}}" alt="Icon">
+                            <img class="img-fluid" src="{{ asset('home/img/icon-luxury.png') }}" alt="Icon">
                         </div>
-                        <h6>Garage</h6>
-                        <span>123 Properties</span>
+                        <h6>All</h6>
+                        <span>{{ $allCount }} Properties</span>
                     </div>
                 </a>
             </div>
