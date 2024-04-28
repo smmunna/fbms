@@ -7,6 +7,7 @@ use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,21 @@ Route::get('/filter-properties', [HomeController::class, 'filter'])->name('filte
 Route::get('/properties/{property_type}', [HomeController::class, 'showPropertiesByType'])->name('properties.by_type');
 
 
+// SSLCOMMERZ Start
+// Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('example1.form');
+Route::get('/payment/{id}', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('payment.form');
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+// Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
+
 // Admin Access
 Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -90,8 +106,7 @@ Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
 });
 
 
-// Logout
-Route::get('/logout', function () {
+Route::post('/logout', function () {
     Auth::logout();
     return redirect('/login');
 })->name('logout');

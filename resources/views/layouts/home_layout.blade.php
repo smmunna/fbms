@@ -69,6 +69,37 @@
     <script src={{ asset('home/js/main.js') }}></script>
     <!-- Starability JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/starability/starability-all.min.js"></script>
+    {{-- SSLCommerze --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the success message element exists
+            var successMessage = document.getElementById("success");
+            if (successMessage) {
+                // Remove the success message after 3 seconds
+                setTimeout(function() {
+                    successMessage.remove();
+                }, 3000);
+            }
+
+            // Check if the failure message element exists
+            var failureMessage = document.getElementById("failure");
+            if (failureMessage) {
+                // Remove the failure message after 3 seconds
+                setTimeout(function() {
+                    failureMessage.remove();
+                }, 3000);
+            }
+        });
+    </script>
     @stack('scripts')
 </body>
 

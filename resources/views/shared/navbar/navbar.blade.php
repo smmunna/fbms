@@ -51,7 +51,11 @@
                         @else
                             <li><a class="dropdown-item" href="{{ route('owner.dashboard') }}">Dashboard</a></li>
                         @endif
-                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                        {{-- <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li> --}}
+                        <form class="dropdown-item" action="{{ route('logout') }}" method="POST">
+                            @csrf <!-- CSRF protection -->
+                            <button type="submit">Logout</button>
+                        </form>
                         <!-- Add other dropdown items if needed -->
                     </ul>
                 </div>

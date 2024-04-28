@@ -76,7 +76,8 @@
                         </div>
                     </div>
                     @if (auth()->check())
-                        <a href="#" class="btn btn-primary text-center">
+                        <a href="{{ route('payment.form', ['id' => $flat->flat_id]) }}"
+                            class="btn btn-primary text-center">
                             Book Now
                         </a>
                     @else

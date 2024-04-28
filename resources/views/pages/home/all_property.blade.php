@@ -39,6 +39,13 @@
         </form>
 
 
+        @if (session('success'))
+            <p id="success" style="text-align: center; color:green; padding:12px;">{{ session('success') }}</p>
+        @endif
+        @if (session('failure'))
+            <p id="failure" style="text-align: center; color:red; padding:12px;">{{ session('failure') }}</p>
+        @endif
+
         <div class="row g-4">
             @foreach ($properties as $flat)
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
