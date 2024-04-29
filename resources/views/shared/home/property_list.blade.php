@@ -1,7 +1,7 @@
  @php
-     $featuredFlats = DB::select("SELECT * FROM flats WHERE featured = 'true' LIMIT 6");
-     $forRent = DB::select("SELECT * FROM flats WHERE sale_status='Rent' LIMIT 6");
-     $forSale = DB::select("SELECT * FROM flats WHERE sale_status = 'Sale' LIMIT 6");
+     $featuredFlats = DB::select("SELECT * FROM flats WHERE featured = 'true' AND status = 'approved' LIMIT 6");
+     $forRent = DB::select("SELECT * FROM flats WHERE sale_status = 'Rent' AND status = 'approved' LIMIT 6");
+     $forSale = DB::select("SELECT * FROM flats WHERE sale_status = 'Sale' AND status = 'approved' LIMIT 6");
 
      //  dd($forRent);
 

@@ -1,7 +1,7 @@
 @extends('layouts.home_layout')
 @section('title', 'Properties')
 @section('content')
-    <div class="container py-3 vh-100">
+    <div class="container py-3 ">
         @if ($properties->isEmpty())
             <div class="alert alert-info text-center" role="alert">
                 No properties found.

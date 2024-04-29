@@ -192,6 +192,8 @@
                      </li>
 
 
+
+
                      <li class="nav-item">
                          <a href="{{ route('logout') }}" class="nav-link">
                              <i class="nav-icon far fa-circle text-danger"></i>
@@ -242,7 +244,7 @@
                          </a>
                      </li>
 
-                     <li class="nav-item">
+                     {{-- <li class="nav-item">
                          <a href="#" class="nav-link">
                              <i class="nav-icon fas fa-table"></i>
                              <p>
@@ -270,6 +272,15 @@
                                  </a>
                              </li>
                          </ul>
+                     </li> --}}
+
+                     <li class="nav-item">
+                         <a href="{{ route('user.orders') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 My Orders
+                             </p>
+                         </a>
                      </li>
 
                      <li class="nav-item">

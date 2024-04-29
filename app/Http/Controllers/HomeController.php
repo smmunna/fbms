@@ -59,16 +59,16 @@ class HomeController extends Controller
 
         return view('pages.home.all_property', compact('properties', 'locations', 'propertyTypes'));
     }
-    
+
     // Properties by type
     public function showPropertiesByType($propertyType)
     {
         // Fetch flats based on the specified property type
         $properties = DB::table('flats')
             ->where('property_type', $propertyType)
+            ->where('status', 'approved')
             ->orderByDesc('created_at')
             ->paginate(10);
-
 
         // Pass the fetched data to the view
         return view('pages.home.properties_by_type', compact('properties'));

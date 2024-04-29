@@ -1,12 +1,15 @@
 @php
-    $villaCount = DB::table('flats')->where('property_type', 'Villa')->count();
-    $familyHouseCount = DB::table('flats')->where('property_type', 'Family House')->count();
-    $officeCount = DB::table('flats')->where('property_type', 'Office')->count();
-    $buildingCount = DB::table('flats')->where('property_type', 'Building')->count();
-    $shopCount = DB::table('flats')->where('property_type', 'Shop')->count();
-    $hostelCount = DB::table('flats')->where('property_type', 'Hostels')->count();
-    $garageCount = DB::table('flats')->where('property_type', 'Garage')->count();
-    $allCount = DB::table('flats')->count();
+    $villaCount = DB::table('flats')->where('property_type', 'Villa')->where('status', 'approved')->count();
+    $familyHouseCount = DB::table('flats')
+        ->where('property_type', 'Family House')
+        ->where('status', 'approved')
+        ->count();
+    $officeCount = DB::table('flats')->where('property_type', 'Office')->where('status', 'approved')->count();
+    $buildingCount = DB::table('flats')->where('property_type', 'Building')->where('status', 'approved')->count();
+    $shopCount = DB::table('flats')->where('property_type', 'Shop')->where('status', 'approved')->count();
+    $hostelCount = DB::table('flats')->where('property_type', 'Hostels')->where('status', 'approved')->count();
+    $garageCount = DB::table('flats')->where('property_type', 'Garage')->where('status', 'approved')->count();
+    $allCount = DB::table('flats')->where('status', 'approved')->count();
 @endphp
 
 
@@ -15,7 +18,9 @@
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="mb-3">Property Types</h1>
-            <p>Discover a space that resonates with your aspirations, offering comfort, warmth, and the promise of a beautiful life together. Welcome to a place where dreams come alive, and every corner echoes the laughter of your family. </p>
+            <p>Discover a space that resonates with your aspirations, offering comfort, warmth, and the promise of a
+                beautiful life together. Welcome to a place where dreams come alive, and every corner echoes the
+                laughter of your family. </p>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">

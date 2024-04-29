@@ -11,6 +11,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -104,6 +105,9 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     // Add more routes as needed...
+    Route::get('/orders/myorders', [UserOrderController::class, 'userOrder'])->name('user.orders');
+    Route::get('/orders/invoice/{id}', [UserOrderController::class, 'userInvoice'])->name('user.invoice');
+    Route::get('/invoice/pdf/{id}', [UserOrderController::class, 'userInvoicePDF'])->name('user.invoice.pdf');
 });
 
 Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
@@ -115,6 +119,11 @@ Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
 
 
 Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+
+Route::get('/logout', function () {
     Auth::logout();
     return redirect('/login');
 })->name('logout');
