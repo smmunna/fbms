@@ -1,0 +1,116 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class OrderController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        // Fetch data from the orders table and join it with the flats table
+        $orders = DB::table('orders')
+            ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
+            ->select('orders.*', 'orders.status as order_status', 'flats.*') // Select columns from both tables
+            ->get();
+
+        // dd($orders);
+
+        // Pass the data to the view
+        return view('pages.admin.orders.index', ['orders' => $orders]);
+    }
+
+    // admin Invoice
+    public function adminInvoice(string $id)
+    {
+        $orders = DB::table('orders')
+            ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
+            ->join('users', 'flats.owner_id', '=', 'users.id')
+            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->where('orders.id', $id)
+            ->first(); // Retrieve only the first item
+
+        // dd($orders);
+
+        return view('pages.admin.orders.invoice', ['orders' => $orders]);
+    }
+
+    // admin Invoice PDF Download
+    public function adminInvoicePDF(string $id)
+    {
+        $orders = DB::table('orders')
+            ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
+            ->join('users', 'flats.owner_id', '=', 'users.id')
+            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->where('orders.id', $id)
+            ->first(); // Retrieve only the first item
+
+        // return view('pages.admin.orders.invoice_pdf', ['orders' => $orders]);
+        $pdf = PDF::loadView('pages.admin.orders.invoice_pdf', ['orders' => $orders]);
+        return $pdf->download('invoice.pdf');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $entity = DB::table('orders')->where('id', $id)->first();
+        // dd($entity);
+        // Pass the entity and dropdown options to the view
+        return view('pages.admin.orders.edit', ['entity' => $entity]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $order)
+    {
+        // Update entity attributes based on the request
+        DB::table('orders')->where('id', $order)->update([
+            'status' => $request->input('status'), // Assuming 'status' is the attribute to be updated
+            // Add other attributes to be updated
+        ]);
+
+        // Redirect back or to a different page after updating
+        return redirect()->route('orders.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

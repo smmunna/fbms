@@ -94,6 +94,14 @@
                              </p>
                          </a>
                      </li>
+                     <li class="nav-item">
+                         <a href="{{ route('orders.index') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Orders
+                             </p>
+                         </a>
+                     </li>
 
 
                      <li class="nav-item">

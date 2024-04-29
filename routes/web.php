@@ -6,6 +6,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\user\ProfileController;
@@ -91,6 +92,13 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::delete('/flats/{id}/delete', [FlatController::class, 'adminDestroyPending'])->name('flat.delete');
 
     Route::put('/flats/{id}/toggle-featured', [FlatController::class, 'toggleFeatured'])->name('flats.toggle-featured');
+
+    // Orders
+    Route::resource('orders', OrderController::class);
+    Route::get('/invoice/{id}', [OrderController::class, 'adminInvoice'])->name('orders.adminInvoice');
+    Route::get('/invoice/pdf/{id}', [OrderController::class, 'adminInvoicePDF'])->name('orders.adminInvoice.pdf');
+    // Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+
 });
 
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
