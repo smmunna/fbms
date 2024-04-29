@@ -1,11 +1,60 @@
 @extends('layouts.dashboard_layout')
-@section('title', 'Orders')
+@section('title', 'Bookings')
 
 @section('dash_content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Orders</h2>
+                <h2>Bookings</h2>
+                <div class="mb-4">
+                    <form action="{{ route('orders.search') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" name="name" id="name">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="phone">Phone:</label>
+                                    <input type="text" class="form-control" name="phone" id="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="transaction_id">Transaction ID:</label>
+                                    <input type="text" class="form-control" name="transaction_id" id="transaction_id">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" class="form-control" name="start_date" id="start_date">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" class="form-control" name="end_date" id="end_date">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <div class="form-group mt-3">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -44,6 +93,8 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Pagination links -->
+                {{ $orders->links() }}
             </div>
         </div>
     </div>

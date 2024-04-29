@@ -7,6 +7,7 @@ use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OwnerOrderController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\user\ProfileController;
@@ -100,6 +101,7 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::get('/invoice/pdf/{id}', [OrderController::class, 'adminInvoicePDF'])->name('orders.adminInvoice.pdf');
     // Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 
+    Route::post('/search', [OrderController::class, 'search'])->name('orders.search');
 });
 
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
@@ -115,6 +117,13 @@ Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
     Route::resource('flats', FlatController::class);
     Route::get('/search/flat', [FlatController::class, 'search'])->name('flats.search');
     // Add more routes as needed...
+    Route::get('/orders/myflat', [OwnerOrderController::class, 'index'])->name('owner.orders');
+    Route::get('/orders/invoice/{id}', [UserOrderController::class, 'userInvoice'])->name('owner.invoice');
+    Route::get('/invoice/pdf/{id}', [UserOrderController::class, 'userInvoicePDF'])->name('owner.invoice.pdf');
+
+    Route::get('/orders/myorders', [UserOrderController::class, 'userOrder'])->name('owner.myorders');
+    Route::get('/orders/myinvoice/{id}', [UserOrderController::class, 'userInvoice'])->name('owner.myinvoice');
+    Route::get('/invoice/mypdf/{id}', [UserOrderController::class, 'userInvoicePDF'])->name('owner.myinvoice.pdf');
 });
 
 

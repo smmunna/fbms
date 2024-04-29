@@ -18,12 +18,52 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
             ->select('orders.*', 'orders.status as order_status', 'flats.*') // Select columns from both tables
-            ->get();
+            ->paginate(10);
 
         // dd($orders);
 
         // Pass the data to the view
         return view('pages.admin.orders.index', ['orders' => $orders]);
+    }
+
+    // Search Bookings
+    public function search(Request $request)
+    {
+        // Get the search query parameters
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $transactionId = $request->input('transaction_id');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Query the orders table and join with the flats table
+        $query = DB::table('orders')
+            ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
+            ->select('orders.*', 'orders.status as order_status', 'flats.*');
+
+        // Apply filters based on the search parameters
+        if ($name) {
+            $query->where('orders.name', 'LIKE', "%$name%");
+        }
+        if ($email) {
+            $query->where('orders.email', 'LIKE', "%$email%");
+        }
+        if ($phone) {
+            $query->where('orders.phone', 'LIKE', "%$phone%");
+        }
+        if ($transactionId) {
+            $query->where('orders.transaction_id', 'LIKE', "%$transactionId%");
+        }
+        if ($startDate && $endDate) {
+            $query->whereBetween('orders.created_at', [$startDate, $endDate]);
+        }
+
+        // Fetch the filtered bookings
+        $bookings = $query->paginate(10);
+
+        // Pass the filtered bookings to the view
+        return view('pages.admin.orders.index', ['orders' => $bookings]);
     }
 
     // admin Invoice

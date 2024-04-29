@@ -104,8 +104,14 @@
         <div class="row no-print">
             <div class="col-12">
                 <div class="float-left">
-                    <a href="{{ route('user.invoice.pdf', ['id' => $orders->id]) }}" class="btn btn-success">Download
-                        Now</a>
+                    @if (auth()->user()->role == 'user')
+                        <a href="{{ route('user.invoice.pdf', ['id' => $orders->id]) }}" class="btn btn-success">Download
+                            Now</a>
+                    @elseif (auth()->user()->role == 'owner')
+                        <a href="{{ route('owner.myinvoice.pdf', ['id' => $orders->id]) }}"
+                            class="btn btn-success">Download
+                            Now</a>
+                    @endif
                 </div>
                 <!-- Add print, submit payment, and generate PDF buttons -->
             </div>

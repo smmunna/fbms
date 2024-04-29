@@ -1,12 +1,11 @@
 @extends('layouts.dashboard_layout')
-@section('title', 'My Bookings')
+@section('title', 'Bookings')
 
 @section('dash_content')
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>My bookings</h2>
+                <h2>Bookings</h2>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -35,12 +34,7 @@
                                     <td>{{ $order->order_status }}</td>
                                     <td>{{ $order->transaction_id }}</td>
                                     <td>
-                                        @if (auth()->user()->role == 'user')
-                                            <a href="{{ route('user.invoice', $order->id) }}" class="btn btn-info">Invoice</a>
-                                        @elseif (auth()->user()->role == 'owner')
-                                            <a href="{{ route('owner.myinvoice', $order->id) }}"
-                                                class="btn btn-info">Invoice</a>
-                                        @endif
+                                        <a href="{{ route('owner.invoice', $order->id) }}" class="btn btn-info">Invoice</a>
                                     </td>
                                     <!-- Add more table cells with corresponding data from flats table -->
                                 </tr>
@@ -51,6 +45,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

@@ -98,7 +98,7 @@
                          <a href="{{ route('orders.index') }}" class="nav-link">
                              <i class="nav-icon far fa-calendar-alt"></i>
                              <p>
-                                 Orders
+                                 Bookings
                              </p>
                          </a>
                      </li>
@@ -154,39 +154,26 @@
                      </li>
 
                      <li class="nav-item">
-                         <a href="#" class="nav-link">
-                             <i class="nav-icon fas fa-table"></i>
-                             <p>
-                                 Tables
-                                 <i class="fas fa-angle-left right"></i>
-                             </p>
-                         </a>
-                         <ul class="nav nav-treeview">
-                             <li class="nav-item">
-                                 <a href="pages/tables/simple.html" class="nav-link">
-                                     <i class="far fa-circle nav-icon"></i>
-                                     <p>Simple Tables</p>
-                                 </a>
-                             </li>
-                             <li class="nav-item">
-                                 <a href="pages/tables/data.html" class="nav-link">
-                                     <i class="far fa-circle nav-icon"></i>
-                                     <p>DataTables</p>
-                                 </a>
-                             </li>
-                             <li class="nav-item">
-                                 <a href="pages/tables/jsgrid.html" class="nav-link">
-                                     <i class="far fa-circle nav-icon"></i>
-                                     <p>jsGrid</p>
-                                 </a>
-                             </li>
-                         </ul>
-                     </li>
-                     <li class="nav-item">
                          <a href="{{ route('flats.index') }}" class="nav-link">
                              <i class="nav-icon far fa-calendar-alt"></i>
                              <p>
                                  Flats
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ route('owner.orders') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Bookings
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ route('owner.myorders') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 My Bookings
                              </p>
                          </a>
                      </li>

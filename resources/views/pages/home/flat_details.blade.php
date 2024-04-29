@@ -75,11 +75,27 @@
                             </table>
                         </div>
                     </div>
+                    @php
+                        $isBooked = DB::table('orders')
+                            ->where('flat_id', $flat->flat_id)
+                            ->where('status', 'Processing')
+                            ->exists();
+                    @endphp
                     @if (auth()->check())
-                        <a href="{{ route('payment.form', ['id' => $flat->flat_id]) }}"
+                        @if ($isBooked)
+                            {{-- Flat is already booked --}}
+                            <p class="text-center btn btn-warning">Already Booked</p>
+                        @else
+                            {{-- Flat is not booked, show the "Book Now" button --}}
+                            <a href="{{ route('payment.form', ['id' => $flat->flat_id]) }}"
+                                class="btn btn-primary text-center">
+                                Book Now
+                            </a>
+                        @endif
+                        {{-- <a href="{{ route('payment.form', ['id' => $flat->flat_id]) }}"
                             class="btn btn-primary text-center">
                             Book Now
-                        </a>
+                        </a> --}}
                     @else
                         <p class="text-center">Please <a href="{{ route('login') }}">login</a> to book</p>
                     @endif
