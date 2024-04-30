@@ -66,7 +66,7 @@
                             <td>{{ $orders->title }}</td>
                             <!-- Add more details from order and flats table -->
                             <td>{{ $orders->flat_id }}</td>
-                            <td>{{ $orders->owner_name }}, {{ $orders->owner_phone }}</td>
+                            <td>{{ $orders->owner_name }}, {{ $orders->owner_phone }}, <br> {{$orders->owner_address}}</td>
                             <td>{{ $orders->amount }}</td>
                         </tr>
                     </tbody>

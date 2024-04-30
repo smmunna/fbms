@@ -114,6 +114,20 @@
             }
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        document.getElementById('download-pdf').addEventListener('click', function() {
+            const doc = new jsPDF();
+            doc.autoTable({
+                html: '#report-table'
+            });
+            doc.save('report.pdf');
+        });
+    </script>
+
+
+
     @stack('scripts')
 </body>
 

@@ -102,6 +102,22 @@
                              </p>
                          </a>
                      </li>
+                     <li class="nav-item">
+                         <a href="{{ route('admin.orders.report') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Reports
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ route('notices.index') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Notices
+                             </p>
+                         </a>
+                     </li>
 
 
                      <li class="nav-item">
@@ -120,7 +136,7 @@
      {{-- Owner sidebar --}}
      @if (auth()->user()->role == 'owner')
          <!-- Brand Logo -->
-         <a href="{{ route('admin.dashboard') }}" class="brand-link">
+         <a href="{{ route('owner.dashboard') }}" class="brand-link">
              <img src={{ asset('dashboard/dist/img/AdminLTELogo.png') }} alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3" style="opacity: .8">
              <span class="brand-text font-weight-light">FBMS</span>
@@ -174,6 +190,14 @@
                              <i class="nav-icon far fa-calendar-alt"></i>
                              <p>
                                  My Bookings
+                             </p>
+                         </a>
+                     </li>
+                     <li class="nav-item">
+                         <a href="{{ route('owner.notices') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Notices
                              </p>
                          </a>
                      </li>
@@ -266,6 +290,15 @@
                              <i class="nav-icon far fa-calendar-alt"></i>
                              <p>
                                  My Orders
+                             </p>
+                         </a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a href="{{ route('user.notices') }}" class="nav-link">
+                             <i class="nav-icon far fa-calendar-alt"></i>
+                             <p>
+                                 Notices
                              </p>
                          </a>
                      </li>

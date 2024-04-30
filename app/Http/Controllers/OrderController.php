@@ -72,7 +72,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
             ->join('users', 'flats.owner_id', '=', 'users.id')
-            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone', 'users.present_address as owner_address')
             ->where('orders.id', $id)
             ->first(); // Retrieve only the first item
 
@@ -87,7 +87,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')
             ->join('flats', 'orders.flat_id', '=', 'flats.flat_id')
             ->join('users', 'flats.owner_id', '=', 'users.id')
-            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone')
+            ->select('orders.*', 'flats.*', 'users.name as owner_name', 'users.email as owner_email', 'users.phone as owner_phone', 'users.present_address as owner_address')
             ->where('orders.id', $id)
             ->first(); // Retrieve only the first item
 

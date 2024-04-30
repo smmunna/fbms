@@ -67,6 +67,7 @@
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <th>Transaction ID</th>
+                                <th>Date</th>
                                 <th>Action</th> <!-- New heading for actions -->
                                 <!-- Add more table headings as needed -->
                             </tr>
@@ -82,6 +83,7 @@
                                     <td>{{ $order->amount }}</td>
                                     <td>{{ $order->order_status }}</td>
                                     <td>{{ $order->transaction_id }}</td>
+                                    <td>{{ $order->created_at }}</td>
                                     <td>
                                         <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-primary">Edit</a>
                                         <a href="{{ route('orders.adminInvoice', $order->id) }}"

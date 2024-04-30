@@ -19,6 +19,7 @@
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <th>Transaction ID</th>
+                                <th>Booking Date</th>
                                 <th>Action</th> <!-- New heading for actions -->
                                 <!-- Add more table headings as needed -->
                             </tr>
@@ -34,6 +35,7 @@
                                     <td>{{ $order->amount }}</td>
                                     <td>{{ $order->order_status }}</td>
                                     <td>{{ $order->transaction_id }}</td>
+                                    <td>{{ $order->created_at }}</td>
                                     <td>
                                         @if (auth()->user()->role == 'user')
                                             <a href="{{ route('user.invoice', $order->id) }}" class="btn btn-info">Invoice</a>

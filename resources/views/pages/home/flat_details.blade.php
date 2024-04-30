@@ -169,7 +169,16 @@
                                             @endfor
                                         </div>
 
-                                        @if (auth()->check() && $comment->user_id === auth()->id())
+                                        {{-- @if (auth()->check() && $comment->user_id === auth()->id())
+                                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST"
+                                                style="position: absolute; top: 0; right: 0;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        @endif --}}
+
+                                        @if (auth()->check() && ($comment->user_id === auth()->id() || auth()->user()->role == 'admin'))
                                             <form action="{{ route('comments.destroy', $comment->id) }}" method="POST"
                                                 style="position: absolute; top: 0; right: 0;">
                                                 @csrf
@@ -177,6 +186,7 @@
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         @endif
+
                                     </li>
                                     <hr>
                                 @endforeach

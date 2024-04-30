@@ -3,6 +3,11 @@
 
 @endphp
 
+@php
+    use Carbon\Carbon;
+
+    $totalNotices = DB::table('notices')->where('created_at', '>=', Carbon::now()->subDays(3))->count();
+@endphp
 
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -49,8 +54,16 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                @if (auth()->user()->role == 'admin')
-                    <span class="badge badge-warning navbar-badge">{{ $pendingCount }}</span>
+                @if (auth()->user()->role == 'admin' && $pendingCount > 0)
+                    <span class="badge badge-warning navbar-badge">1</span>
+                @endif
+
+                @if (auth()->user()->role == 'owner' && $totalNotices > 0)
+                    <span class="badge badge-warning navbar-badge">1</span>
+                @endif
+
+                @if (auth()->user()->role == 'user' && $totalNotices > 0)
+                    <span class="badge badge-warning navbar-badge">1</span>
                 @endif
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -58,6 +71,22 @@
                     @if ($pendingCount > 0)
                         <a href="{{ route('pending.flat') }}" class="dropdown-item">
                             <i class="fas fa-envelope mr-2"></i> {{ $pendingCount }} new flats are waiting for approval
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    @endif
+                @endif
+                @if (auth()->user()->role == 'owner')
+                    @if ($pendingCount > 0)
+                        <a href="{{ route('owner.notices') }}" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> {{ $totalNotices }} new notices published last 3 days
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    @endif
+                @endif
+                @if (auth()->user()->role == 'user')
+                    @if ($pendingCount > 0)
+                        <a href="{{ route('user.notices') }}" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> {{ $totalNotices }} new notices published last 3 days
                         </a>
                         <div class="dropdown-divider"></div>
                     @endif

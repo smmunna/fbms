@@ -6,9 +6,11 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OwnerOrderController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\user\ProfileController;
 use App\Http\Controllers\user\UserController;
@@ -80,6 +82,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/userlist', [UserController::class, 'userList'])->name('admin.userlist');
+    Route::get('/ownerlist', [DashboardController::class, 'ownerList'])->name('admin.ownerlist');
     Route::get('/search/user-list', [UserController::class, 'userListSearch'])->name('user.list.search');
     Route::get('/user/{id}', [UserController::class, 'viewUser'])->name('admin.user.view');
     Route::delete('/user/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
@@ -102,6 +105,15 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     // Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
 
     Route::post('/search', [OrderController::class, 'search'])->name('orders.search');
+
+    // Report 
+    Route::get('/report', [ReportController::class, 'adminReport'])->name('admin.orders.report');
+
+    // Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::post('/reports/get', [ReportController::class, 'getReports'])->name('reports.get');
+
+    // Notices
+    Route::resource('notices', NoticeController::class);
 });
 
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
@@ -110,6 +122,9 @@ Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
     Route::get('/orders/myorders', [UserOrderController::class, 'userOrder'])->name('user.orders');
     Route::get('/orders/invoice/{id}', [UserOrderController::class, 'userInvoice'])->name('user.invoice');
     Route::get('/invoice/pdf/{id}', [UserOrderController::class, 'userInvoicePDF'])->name('user.invoice.pdf');
+
+    // Owner notices
+    Route::get('/notices', [NoticeController::class, 'ownerNotice'])->name('user.notices');
 });
 
 Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
@@ -124,6 +139,9 @@ Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
     Route::get('/orders/myorders', [UserOrderController::class, 'userOrder'])->name('owner.myorders');
     Route::get('/orders/myinvoice/{id}', [UserOrderController::class, 'userInvoice'])->name('owner.myinvoice');
     Route::get('/invoice/mypdf/{id}', [UserOrderController::class, 'userInvoicePDF'])->name('owner.myinvoice.pdf');
+
+    // Owner notices
+    Route::get('/notices', [NoticeController::class, 'ownerNotice'])->name('owner.notices');
 });
 
 
