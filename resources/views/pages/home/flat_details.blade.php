@@ -78,7 +78,9 @@
                     @php
                         $isBooked = DB::table('orders')
                             ->where('flat_id', $flat->flat_id)
-                            ->where('status', 'Processing')
+                            ->where(function ($query) {
+                                $query->where('status', 'Processing')->orWhere('status', 'Completed');
+                            })
                             ->exists();
                     @endphp
                     @if (auth()->check())
