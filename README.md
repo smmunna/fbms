@@ -18,6 +18,10 @@ pass: 1234
 ## Owner Pannel
 email: owner@gmail.com
 pass: 1234
+
+email: owner2@gmail.com
+pass: 1234
+
 1. Dashboard
    1. Flats (Create, Delete, Update)  `Initially it wiill pending, and will be accepted by admin`
    2. Profile (Update profile)
@@ -30,6 +34,12 @@ pass: 1234
 
 ## User Panel
 email: remu@gmail.com
+pass: 1234
+
+email: tanzim@gmail.com
+pass: 1234
+
+email: faijur@gmail.com
 pass: 1234
 1. Dashboard
    1. Can view bookings 

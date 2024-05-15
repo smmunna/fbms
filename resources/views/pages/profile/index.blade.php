@@ -8,7 +8,8 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6 text-center">
-                <img src="{{ auth()->user()->photo }}" alt="Profile Photo" height="200" width="200" class="img-fluid rounded-circle mb-4">
+                <img src="{{ asset(auth()->user()->photo) }}" alt="Profile Photo" height="200" width="200"
+                    class="img-fluid rounded-circle mb-4">
             </div>
             <div class="col-md-6">
                 <table class="table">
@@ -47,7 +48,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="{{ route('edit-profile') }}" class="btn btn-primary">Edit Profile</a> <!-- Added edit profile button -->
+                <a href="{{ route('edit-profile') }}" class="btn btn-primary">Edit Profile</a>
+                <!-- Added edit profile button -->
             </div>
         </div>
     </div>

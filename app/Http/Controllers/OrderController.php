@@ -134,6 +134,18 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // public function update(Request $request, string $order)
+    // {
+    //     // Update entity attributes based on the request
+    //     DB::table('orders')->where('id', $order)->update([
+    //         'status' => $request->input('status'), // Assuming 'status' is the attribute to be updated
+    //         // Add other attributes to be updated
+    //     ]);
+
+    //     // Redirect back or to a different page after updating
+    //     return redirect()->route('orders.index');
+    // }
+
     public function update(Request $request, string $order)
     {
         // Update entity attributes based on the request
@@ -142,9 +154,20 @@ class OrderController extends Controller
             // Add other attributes to be updated
         ]);
 
+        // Check if the status is 'Completed' and update the booking_status in flats table accordingly
+        if ($request->input('status') === 'Completed') {
+            $orderData = DB::table('orders')->where('id', $order)->first();
+            if ($orderData) {
+                DB::table('flats')
+                    ->where('flat_id', $orderData->flat_id)
+                    ->update(['booking_status' => 'booked']);
+            }
+        }
+
         // Redirect back or to a different page after updating
         return redirect()->route('orders.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
