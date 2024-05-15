@@ -30,8 +30,8 @@
                         <a href="404.html" class="dropdown-item">404 Error</a>
                     </div>
                 </div> --}}
-                <a href="#" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link">Contact</a>
+                {{-- <a href="#" class="nav-item nav-link">About</a>
+                <a href="#" class="nav-item nav-link">Contact</a> --}}
             </div>
             @if (auth()->user())
                 <div class="dropdown d-flex align-items-center">

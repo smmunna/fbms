@@ -18,8 +18,8 @@
                           </div>
                       </div>
                       <div class="text-center p-4 mt-3">
-                          <h5 class="fw-bold mb-0">Full Name</h5>
-                          <small>Designation</small>
+                          <h5 class="fw-bold mb-0">Remu</h5>
+                          <small>Software Eng.</small>
                       </div>
                   </div>
               </div>
@@ -34,8 +34,8 @@
                           </div>
                       </div>
                       <div class="text-center p-4 mt-3">
-                          <h5 class="fw-bold mb-0">Full Name</h5>
-                          <small>Designation</small>
+                          <h5 class="fw-bold mb-0">Fahim</h5>
+                          <small>Software Eng.</small>
                       </div>
                   </div>
               </div>
@@ -50,8 +50,8 @@
                           </div>
                       </div>
                       <div class="text-center p-4 mt-3">
-                          <h5 class="fw-bold mb-0">Full Name</h5>
-                          <small>Designation</small>
+                          <h5 class="fw-bold mb-0">Israt</h5>
+                          <small>Manager</small>
                       </div>
                   </div>
               </div>
@@ -66,8 +66,8 @@
                           </div>
                       </div>
                       <div class="text-center p-4 mt-3">
-                          <h5 class="fw-bold mb-0">Full Name</h5>
-                          <small>Designation</small>
+                          <h5 class="fw-bold mb-0">Sm.Munna</h5>
+                          <small>Admin</small>
                       </div>
                   </div>
               </div>
