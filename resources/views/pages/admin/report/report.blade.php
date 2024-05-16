@@ -31,7 +31,7 @@
     @if (isset($data))
 
         <div id="report-table" class="report-table">
-            <h3 style="text-align: center">Booking List</h3>
+            <h3 style="text-align: center;">Booking List</h3>
             <hr>
             <!-- Styled total amount and total booking paragraphs -->
             <div class="total-info" style="margin-top: 20px; text-align: left;">

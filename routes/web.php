@@ -116,6 +116,7 @@ Route::middleware('checkUserRole:admin')->prefix('admin')->group(function () {
     Route::resource('notices', NoticeController::class);
 });
 
+// User
 Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     // Add more routes as needed...
@@ -127,6 +128,7 @@ Route::middleware('checkUserRole:user')->prefix('user')->group(function () {
     Route::get('/notices', [NoticeController::class, 'ownerNotice'])->name('user.notices');
 });
 
+// Owner
 Route::middleware('checkUserRole:owner')->prefix('owner')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('owner.dashboard');
     Route::resource('flats', FlatController::class);
