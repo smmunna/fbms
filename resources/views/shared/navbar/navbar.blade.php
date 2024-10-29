@@ -46,6 +46,8 @@
                         <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
                         @if (auth()->user()->role == 'admin')
                             <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        @elseif (auth()->user()->role == 'user')
+                            <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
                         @elseif (auth()->user()->role == 'owner')
                             <li><a class="dropdown-item" href="{{ route('owner.dashboard') }}">Dashboard</a></li>
                         @else
