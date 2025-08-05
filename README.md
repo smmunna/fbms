@@ -48,3 +48,7 @@ pass: 1234
    4. View Invoice
    5. Download Invoice
    6. Notice notifications
+
+## Output
+![HomePage](image.png)
+![All-Properties Page](image-1.png)
